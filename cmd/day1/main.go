@@ -49,7 +49,7 @@ var (
 func main() {
 	flag.Parse()
 	log.Println("InputFN=", *inputFileName, "problem=", *problem)
-	side1, side2, err := input.ReadIntInput(*inputFileName)
+	side1, side2, err := input.ReadIntColumns(*inputFileName)
 	if err != nil || len(side1) != len(side2) {
 		log.Fatal(err)
 	}

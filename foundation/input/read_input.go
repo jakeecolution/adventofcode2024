@@ -8,7 +8,7 @@ import (
 )
 
 // filename includes path
-func ReadIntInput(filename string) ([]int, []int, error) {
+func ReadIntColumns(filename string) ([]int, []int, error) {
 	var err error = nil
 	filecontents, err := os.ReadFile(filename)
 	if err != nil {
@@ -35,4 +35,31 @@ func ReadIntInput(filename string) ([]int, []int, error) {
 		input2[i] = tmp2
 	}
 	return input1, input2, err
+}
+
+func ReadIntMatrix(filename string) ([][]int, error) {
+	var err error = nil
+	var errOutput [][]int = make([][]int, 0)
+	fcontents, err := os.ReadFile(filename)
+	if err != nil {
+		log.Printf("Error reading output from filename '%s' - Error = '%v", filename, err)
+		return errOutput, err
+	}
+	fstring := string(fcontents)
+	lineCount := strings.Count(fstring, "\n") + 1
+	input := make([][]int, lineCount)
+	for idx, item := range strings.Split(fstring, "\n") {
+		items := strings.Split(item, " ")
+		line := make([]int, len(items))
+		for i, itm := range items {
+			t, err := strconv.Atoi(itm)
+			if err != nil {
+				log.Printf("Failed converting a string to an integer - %v", err)
+				return errOutput, err
+			}
+			line[i] = t
+		}
+		input[idx] = line
+	}
+	return input, err
 }
