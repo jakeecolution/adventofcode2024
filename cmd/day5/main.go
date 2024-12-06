@@ -38,7 +38,6 @@ restartSearch:
 		for _, before := range befores {
 			check, pos := Contains(tmp, before)
 			if check {
-
 				t := u.PassingUpdate[pos]
 				u.PassingUpdate[pos] = u.PassingUpdate[i]
 				u.PassingUpdate[i] = t
