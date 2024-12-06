@@ -168,7 +168,7 @@ func main() {
 			}
 		}
 	}
-	log.Println(bOrders)
+	// log.Println(bOrders)
 	log.Println("Total =", total)
 	log.Println("Not correct total=", notCorrectTotal)
 }
